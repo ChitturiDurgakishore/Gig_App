@@ -12,13 +12,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Copy project
 COPY . .
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Laravel setup
+# Clear Laravel caches
 RUN php artisan config:clear || true
 RUN php artisan cache:clear || true
 
