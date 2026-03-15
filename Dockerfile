@@ -30,9 +30,10 @@ RUN npm install
 RUN npm run build
 
 # Clear caches
-RUN php artisan config:clear || true
-RUN php artisan cache:clear || true
 
+RUN php artisan config:clear
+RUN php artisan route:clear
+RUN php artisan view:clear
 EXPOSE 10000
 
 # Run migrations when container starts
