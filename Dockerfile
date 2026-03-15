@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_pgsql
 
 # Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 # Install Composer
@@ -36,4 +36,4 @@ RUN php artisan cache:clear || true
 EXPOSE 10000
 
 # Run migrations when container starts
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan migrate:fresh --force && php artisan serve --host=0.0.0.0 --port=10000
