@@ -36,4 +36,4 @@ RUN php artisan cache:clear || true
 EXPOSE 10000
 
 # Run migrations when container starts
-CMD php artisan migrate:fresh --force && php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan config:clear && php artisan migrate:fresh --force --no-interaction && php artisan serve --host=0.0.0.0 --port=10000
